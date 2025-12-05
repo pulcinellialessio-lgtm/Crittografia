@@ -65,34 +65,46 @@ namespace Cifratura
                 }
                 
             }
+            char[] parolaTraspI = TraspInversa(chiave, Parola);
+
+            Console.Write("Parola Trasposta Inversa: ");
+
+            for (int i = 0; i < parolaTraspI.Length; i++)
+            {
+                Console.Write(parolaTraspI[i]);
+            }
+
+            Console.WriteLine("         ");
 
             return appoggio;
         }
-        static char[] TraspInversa(char[] alfabeto, int chiave, char[] appoggio)
+        static char[] TraspInversa(int chiave, char[] appoggio)
         {
-            char[] inverso = new char[appoggio.Length];
-            int Somm = 0;
-            int Diff = 0;
+            char[] parolaTraspI = new char[appoggio.Length];
+            int Diff2 = 0;
+            int Diff1 = 0;
+            int Diff3 = 0;
 
             for (int i = 0; i < appoggio.Length; i++)
             {
-                Somm = i + chiave;
-
-                if (i + chiave >= appoggio.Length)
+                Diff1 = i - chiave;
+                
+                if (i == 0)
                 {
-
-                    Diff = Somm - appoggio.Length;
-
-                    appoggio[Diff] = appoggio[i];
+                    Diff2 = appoggio.Length - chiave;
+                    parolaTraspI[Diff2] = appoggio[i];
+                }
+                else if (Diff1 < 0 && i != 0)
+                {
+                    Diff3 = appoggio.Length - i;
+                    parolaTraspI[Diff3] = appoggio[i];
                 }
                 else
                 {
-                    appoggio[Somm] = appoggio[];
+                    parolaTraspI[Diff1] = appoggio[i];
                 }
-
             }
-
-            return appoggio;
+            return parolaTraspI;
         }
         static void Main(string[] args)
         {
@@ -108,6 +120,8 @@ namespace Cifratura
 
             char[] parolaSos = numeriC(Parola, alfabeto, chiave);
 
+            Console.Write("Parola Sostituita: ");
+
             for (int i = 0; i < parolaSos.Length; i++)
             {
                 Console.Write(parolaSos[i]);
@@ -117,10 +131,13 @@ namespace Cifratura
 
             char[] parolaTrasp = Trasposizione(alfabeto, chiave, Parola);
 
+            Console.Write("Parola Trasposta: ");
+
             for (int i = 0; i < parolaTrasp.Length; i++)
             {
                 Console.Write(parolaTrasp[i]);
             }
+
         }
     }
 }
